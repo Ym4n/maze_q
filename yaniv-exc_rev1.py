@@ -1,7 +1,5 @@
-# import numpy
 import numpy as np
 import random
-import concurrent.futures
 
 class Maze_builder:
     def __init__(self,inputboard):
@@ -25,7 +23,7 @@ class Maze_builder:
         
         return "+"
 
-    def wall_detector(self,i,j,neighbors,):
+    def wall_detector(self,i,j,neighbors):
         """ 
             wall detector - a recursion function that follow the walls for each side .
             i,j index for matrix data.
@@ -79,26 +77,21 @@ class Maze_builder:
         return self.outputBoard
 
 if __name__=="__main__":
-    #exmple data
-    npdata = np.array([
-                    [1, 1, 1, 0, 1], 
-                    [1, 0, 0, 0, 1], 
-                    [1, 0, 1, 0, 1], 
-                    [0, 0, 0, 0, 1], 
-                    [1, 1, 1, 1, 1], 
-                ])
+    #exmple data or random data
+
+    # npdata = np.array([
+    #                 [1, 1, 1, 0, 1], 
+    #                 [1, 0, 0, 0, 1], 
+    #                 [1, 0, 1, 0, 1], 
+    #                 [0, 0, 0, 0, 1], 
+    #                 [1, 1, 1, 1, 1], 
+    #             ])
     
     board_size = 8
     npdata = np.random.randint(2, size=(board_size, board_size))
-
-    # testBoard  = np.chararray(npdata.shape) 
-    # testBoard[:] = " "
-
-    # for i in range(len(npdata)):
-    #         for j in range(len(npdata[i])):
                 
-
     print(npdata)
     
     maze= Maze_builder(npdata)
-    print(maze.build())
+    output_maze = maze.build()
+    print(np.char.decode(output_maze))
